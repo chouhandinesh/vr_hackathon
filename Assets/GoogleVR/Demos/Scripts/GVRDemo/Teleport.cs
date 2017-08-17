@@ -28,6 +28,9 @@ public class Teleport : MonoBehaviour {
 
 	public static Teleport instance;
 
+	public Transform player;
+
+
 	public void Awake()
 	{
 		instance = this;
@@ -72,6 +75,20 @@ public class Teleport : MonoBehaviour {
 //		if (Input.GetKeyDown (KeyCode.T)) {
 //			TeleportRandomly ();
 //		}
+
+//		if (Input.GetMouseButton (0)) {
+//			facetarget ();
+//		}
+
+	}
+
+
+	public void facetarget()
+	{
+		Debug.Log ("fjsdfhsfh");
+		Vector3 lookpos = transform.localPosition - player.localPosition;
+		Quaternion rot = Quaternion.LookRotation (lookpos);
+		player.transform.rotation = Quaternion.Slerp (player.transform.rotation, rot, Time.deltaTime * 6);
 	}
 
 

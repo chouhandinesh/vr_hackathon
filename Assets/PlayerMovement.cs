@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 	public GameObject hudGreentext;
 
 
-
+	public int damping;
 
 	void Update()
 	{
@@ -43,7 +43,22 @@ public class PlayerMovement : MonoBehaviour
 			print ("Hey");
 			Teleport.instance.TeleportRandomly ();
 		}
+
+
+
 	}
+
+	public void facetarget()
+	{
+		
+		Vector3 lookpos = target.localPosition - transform.localPosition;
+		Quaternion rot = Quaternion.LookRotation (lookpos);
+		transform.rotation = Quaternion.Slerp (transform.rotation, rot, Time.deltaTime * damping);
+	}
+
+
+
+
 
 	public void SetGazedAt(bool gazedAt) {
 		if (inactiveMaterial != null && gazedAtMaterial != null) {
